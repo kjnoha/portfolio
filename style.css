@@ -591,17 +591,23 @@ section {
 }
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
 }
 
 .skill-card {
+  position: relative;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 24px;
-  transition: border-color 0.2s, transform 0.2s;
+  flex: 0 1 350px;
+  min-width: 280px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .skill-card:hover {
@@ -763,21 +769,24 @@ section {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
 }
 
 .project-card {
-  background: var(--bg3);
+  position: relative;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 28px;
+  padding: 32px;
+  flex: 0 1 400px;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
   overflow: hidden;
 }
 
@@ -1055,7 +1064,6 @@ footer {
 }
 
 /* ── BORDER BEAM EFFECT ── */
-.skill-card,
 .exp-card,
 .project-card {
   position: relative;
@@ -1064,19 +1072,6 @@ footer {
   border-radius: 16px;
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.skill-card {
-  padding: 24px;
-  border-radius: 12px;
-}
-
-.exp-card {
-  padding: 32px;
-}
-
-.project-card {
-  padding: 32px;
 }
 
 .skill-card:hover,
@@ -1213,7 +1208,7 @@ footer {
   }
 
   .projects-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   #hero,
