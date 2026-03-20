@@ -1092,10 +1092,57 @@
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    .fade-in.visible { opacity: 1; transform: none; }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    .slide-in-left.visible { opacity: 1; transform: none; }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .slide-in-right.visible { opacity: 1; transform: none; }
+
+    .flip-in {
+      opacity: 0;
+      transform: perspective(1000px) rotateX(45deg) translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transform-origin: top;
+    }
+    .flip-in.visible { opacity: 1; transform: perspective(1000px) rotateX(0deg) translateY(0); }
+
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal-up.visible { opacity: 1; transform: none; }
+
+    .zoom-blur-in {
+      opacity: 0;
+      filter: blur(10px);
+      transform: scale(0.9);
+      transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .zoom-blur-in.visible { opacity: 1; filter: blur(0); transform: scale(1); }
+
+    .pop-in {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .pop-in.visible { opacity: 1; transform: scale(1); }
+
+    .rotate-in {
+      opacity: 0;
+      transform: rotate(-5deg) translateX(-30px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .rotate-in.visible { opacity: 1; transform: none; }

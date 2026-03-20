@@ -6,7 +6,8 @@ const observer = new IntersectionObserver((entries) => {
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    const animClasses = ['.fade-in', '.slide-in-left', '.slide-in-right', '.flip-in', '.reveal-up', '.zoom-blur-in', '.pop-in', '.rotate-in'];
+    document.querySelectorAll(animClasses.join(', ')).forEach(el => observer.observe(el));
 
     /* ── GLOWING EFFECT LOGIC ── */
     document.querySelectorAll('.project-card, .exp-card, .skill-card').forEach(card => {
@@ -273,4 +274,4 @@ const observer = new IntersectionObserver((entries) => {
       };
       
       requestAnimationFrame(updateExpansionParallax);
-    }
+    }
