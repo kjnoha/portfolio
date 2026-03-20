@@ -1221,6 +1221,26 @@ footer {
     padding: 60px 16px;
   }
 
+  .exp-card {
+    padding: 24px 16px;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .exp-date {
+    margin-top: 4px;
+    white-space: normal;
+    align-self: flex-start;
+  }
+
+  .exp-list li {
+    font-size: 0.85rem;
+  }
+
   .hero-name {
     font-size: clamp(2.5rem, 10vw, 3rem);
   }
