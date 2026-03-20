@@ -27,60 +27,6 @@ const observer = new IntersectionObserver((entries) => {
 const animClasses = ['.fade-in', '.slide-in-left', '.slide-in-right', '.flip-in', '.reveal-up', '.zoom-blur-in', '.pop-in', '.rotate-in'];
 document.querySelectorAll(animClasses.join(', ')).forEach(el => observer.observe(el));
 
-/* ── GLOWING EFFECT LOGIC ── */
-document.querySelectorAll('.project-card, .exp-card, .skill-card').forEach(card => {
-  let currentAngle = 0;
-  let targetAngle = 0;
-  let animationFrame;
-
-  const updateAngle = () => {
-    const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
-    if (Math.abs(angleDiff) > 0.1) {
-      currentAngle += angleDiff * 0.1;
-      card.style.setProperty('--start', currentAngle);
-      animationFrame = requestAnimationFrame(updateAngle);
-    } else {
-      animationFrame = null;
-    }
-  };
-
-  document.addEventListener('pointermove', e => {
-    const rect = card.getBoundingClientRect();
-    const left = rect.left;
-    const top = rect.top;
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-
-    const center = [left + width * 0.5, top + height * 0.5];
-    const distanceFromCenter = Math.hypot(mouseX - center[0], mouseY - center[1]);
-
-    const inactiveZone = 0.7;
-    const inactiveRadius = 0.5 * Math.min(width, height) * inactiveZone;
-
-    if (distanceFromCenter < inactiveRadius) {
-      card.style.setProperty('--active', 0);
-      return;
-    }
-
-    const proximity = 64;
-    const isActive = mouseX > left - proximity &&
-      mouseX < left + width + proximity &&
-      mouseY > top - proximity &&
-      mouseY < top + height + proximity;
-
-    card.style.setProperty('--active', isActive ? 1 : 0);
-
-    if (isActive) {
-      targetAngle = (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) / Math.PI + 90;
-      if (!animationFrame) {
-        animationFrame = requestAnimationFrame(updateAngle);
-      }
-    }
-  });
-});
-
 /* ── LIGHTNING BACKGROUND LOGIC ── */
 const canvas = document.getElementById('lightning-canvas');
 if (canvas) {

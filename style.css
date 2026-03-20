@@ -482,6 +482,7 @@ section {
   margin: 0;
 }
 
+
 /* ── ABOUT ── */
 #about {
   padding: 100px 48px;
@@ -1053,49 +1054,71 @@ footer {
   border-top: 1px solid var(--border);
 }
 
-/* ── GLOWING EFFECT ── */
-.project-card,
+/* ── BORDER BEAM EFFECT ── */
+.skill-card,
 .exp-card,
-.skill-card {
+.project-card {
   position: relative;
-  z-index: 1;
-  --start: 0;
-  --active: 0;
-  --spread: 40;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.project-card::after,
-.exp-card::after,
-.skill-card::after {
+.skill-card {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.exp-card {
+  padding: 32px;
+}
+
+.project-card {
+  padding: 32px;
+}
+
+.skill-card:hover,
+.exp-card:hover,
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.border-beam {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid transparent;
+  
+  /* mask styles */
+  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  -webkit-mask-clip: padding-box, border-box;
+  -webkit-mask-composite: source-in, xor;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+.border-beam::after {
   content: "";
   position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: radial-gradient(circle, #dd7bbb 10%, transparent 20%),
-    radial-gradient(circle at 40% 40%, #d79f1e 5%, transparent 15%),
-    radial-gradient(circle at 60% 60%, #5a922c 10%, transparent 20%),
-    radial-gradient(circle at 40% 60%, #4c7894 10%, transparent 20%),
-    repeating-conic-gradient(from 236.84deg at 50% 50%,
-      #dd7bbb 0%,
-      #d79f1e 5%,
-      #5a922c 10%,
-      #4c7894 15%,
-      #dd7bbb 20%);
-  background-attachment: fixed;
-  opacity: var(--active, 0);
-  transition: opacity 0.3s;
-  z-index: -1;
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    conic-gradient(from calc((var(--start) - var(--spread)) * 1deg), transparent 0deg, #fff, transparent calc(var(--spread) * 2deg));
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    conic-gradient(from calc((var(--start) - var(--spread)) * 1deg), transparent 0deg, #fff, transparent calc(var(--spread) * 2deg));
-  mask-composite: exclude;
+  aspect-ratio: 1;
+  width: 200px;
+  background: linear-gradient(to left, #ffaa40, #9c40ff, transparent);
+  offset-path: rect(0 100% 100% 0 round 200px);
+  animation: border-beam 15s infinite linear;
 }
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
@@ -1298,4 +1321,9 @@ footer {
 .rotate-in.visible {
   opacity: 1;
   transform: none;
+}
+
+@keyframes shadow-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+  50% { box-shadow: 0 0 25px rgba(255,255,255,0.2); }
 }
